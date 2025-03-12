@@ -1,14 +1,8 @@
-﻿// Datei: PaymentDetailDto.java
-using SPG_Fachtheorie.Aufgabe3.Dtos;
+﻿using SPG_Fachtheorie.Aufgabe1.Model;
 
-
-
-public record PaymentDetailDto(
-    int id,
-    String employeeFirstName,
-    String employeeLastName,
-    int cashDeskNumber,
-    String paymentType,
-    List<PaymentItemDto> paymentItems
-)
-{ }
+namespace SPG_Fachtheorie.Aufgabe3.Dtos
+{
+    public record PaymentDetailDto(int id, string employeeFirstName,
+        string employeeLastName, int cashDeskNumber,
+        string paymentType, List<PaymentItemDto> paymentItems);
+}
