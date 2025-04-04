@@ -8,6 +8,10 @@ using SPG_Fachtheorie.Aufgabe3.Dtos;
 using System.Linq;
 using System.Collections.Generic;
 using System;
+using SPG_Fachtheorie.Aufgabe1.Commands;
+using SPG_Fachtheorie.Aufgabe1.Exceptions;
+
+
 
 namespace SPG_Fachtheorie.Aufgabe3.Controllers
 {
@@ -226,4 +230,22 @@ namespace SPG_Fachtheorie.Aufgabe3.Controllers
             return NoContent();
         }
     }
+
+
+    [HttpPost("items")]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public IActionResult AddPaymentItem([FromBody] NewPaymentItemCommand cmd)
+    {
+        try
+        {
+            _paymentService.AddPaymentItem(cmd);
+            return StatusCode(StatusCodes.Status201Created);
+        }
+        catch (PaymentServiceException e)
+        {
+            return Problem(e.Message, statusCode: 400);
+        }
+    }
+
 }
